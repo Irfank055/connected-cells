@@ -17,9 +17,10 @@ class ConnctedCells
         var colsPrompValue = prompt('Please enter the Number of Columns: ');
         this.n =  parseInt(colsPrompValue || "0");
         this.getInputMatrix();
+        document.write("<br>");
+        document.write("<br>");
 
-        document.write("<br>");
-        document.write("<br>");
+        document.write("<b><b> Number of Cells in Largest Region :" + this.countCellsInLargestRegion(this.matrix));  
        
     }
 
@@ -63,6 +64,43 @@ class ConnctedCells
              document.write("<br>");
              document.write("<br>");
     }
+
+    countCellsInLargestRegion(matrix:number[][]):number {
+        var m = this.m;
+        var n = this.n;
+        //initialize and fill visited array
+        var visited:boolean[][] = [];
+        for(var i=0;i<m;i++){
+            visited[i] = [];
+            for(var j=0;j<n;j++){
+                if(matrix[i][j]===0){
+                    visited[i][j]=true;
+                }
+                else
+                    visited[i][j]=false;
+            }
+        }
+        //possible solution
+        var Solution=[];
+        var count=0;
+        for(var i=0;i<matrix.length;i++){
+
+            for(var j=0;j<matrix[i].length;j++){
+               
+    
+                if(matrix[i][j]===1&&!visited[i][j]){
+                    count= this.BFS(matrix,i,j,visited)
+                    Solution.push(count);
+                }
+            }
+        }
+
+    
+        Solution.sort((a,b)=>(b-a));
+        console.log(Solution[0]);
+        return Solution[0];
+    } 
+        
 
     BFS(m:number[][],r:number,c:number,visited:boolean[][]){
         visited[r][c]=true;
