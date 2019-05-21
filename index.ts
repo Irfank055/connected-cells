@@ -63,6 +63,72 @@ class ConnctedCells
              document.write("<br>");
              document.write("<br>");
     }
+
+    BFS(m:number[][],r:number,c:number,visited:boolean[][]){
+        visited[r][c]=true;
+        var acc=1;
+        var nei = new Array();
+        nei.push([r,c]);
+        while(nei.length>0){
+            var cur= nei.shift();
+            var adj= this.checkNeighbor(m,cur[0],cur[1]);
+            for(var i=0;i<adj.length;i++){
+                var row=adj[i][0];
+                var col=adj[i][1];
+                if(!visited[row][col]){
+                    visited[row][col]=true;
+                    acc++;
+                    nei.push([row,col]);
+                }
+            }
+        }
+        return acc;
+    }
+    
+    checkNeighbor(m:number[][],r:number,c:number){
+        var arr=[];
+        if (r-1>=0&&c-1>=0){
+            if(m[r-1][c-1]===1){
+                arr.push([r-1,c-1]);
+            }
+        }
+        if(r-1>=0){
+            if(m[r-1][c]===1){
+                arr.push([r-1,c]);
+            }
+        }
+        if(r-1>=0&&c+1<m[r].length){
+            if(m[r-1][c+1]===1){
+                arr.push([r-1,c+1]);
+            }
+        }
+        if(c-1>=0){
+            if(m[r][c-1]===1){
+                arr.push([r,c-1]);
+            }
+        }
+        if(c+1<m[r].length){
+            if(m[r][c+1]===1){
+                arr.push([r,c+1]);
+            }
+        }
+        if(r+1<m.length&&c-1>=0){
+            if(m[r+1][c-1]===1){
+                arr.push([r+1,c-1]);
+            }
+        }
+        if(r+1<m.length){
+            if(m[r+1][c]===1){
+                arr.push([r+1,c]);
+            }
+        }
+        if(r+1<m.length&&c+1<m[r].length){
+            if(m[r+1][c+1]===1){
+                arr.push([r+1,c+1]);
+            }
+        }
+        return arr;
+    }
     
     
 }
