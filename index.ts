@@ -20,7 +20,7 @@ class ConnctedCells
         document.write("<br>");
         document.write("<br>");
 
-        document.write("<b><b> Number of Cells in Largest Region :" + this.countCellsInLargestRegion(this.matrix));  
+        document.write("<br><br> Number of Cells in Largest Region :" + this.countCellsInLargestRegion(this.matrix));  
        
     }
 
@@ -83,10 +83,24 @@ class ConnctedCells
         //possible solution
         var Solution=[];
         var count=0;
+    
+        document.write("<b> Regions : <br><br>");
+    
+        var table = document.createElement("table");
+        table.border = "1";
+        table.style.width = '100';
+    
         for(var i=0;i<matrix.length;i++){
-
+            var row = table.insertRow(-1);
             for(var j=0;j<matrix[i].length;j++){
-               
+                var cell = row.insertCell(-1);
+                cell.style.width = '40';
+                cell.style.height = '40';
+                cell.innerHTML = ""+matrix[i][j] ;
+    
+                if (matrix[i][j] === 1){
+                    cell.style.backgroundColor = 'green';
+                }
     
                 if(matrix[i][j]===1&&!visited[i][j]){
                     count= this.BFS(matrix,i,j,visited)
@@ -94,13 +108,16 @@ class ConnctedCells
                 }
             }
         }
-
+    
+        var dvTable = document.createElement("div");
+            dvTable.appendChild(table);
+            document.write(dvTable.innerHTML);
     
         Solution.sort((a,b)=>(b-a));
         console.log(Solution[0]);
         return Solution[0];
     } 
-        
+    
 
     BFS(m:number[][],r:number,c:number,visited:boolean[][]){
         visited[r][c]=true;
