@@ -1,3 +1,15 @@
+# Solution
+1) Clone the project   git clone https://github.com/Irfank055/connected-cells.git 
+2) npm install
+3) tsc index.ts   (to compile ts into js)
+4) npm start      (defined a script  "start": "live-server" to run the server)
+5) enter the informations requested in the prompt (e.g number of rows and cols, matrix enteries etc)
+6) see out put ( region in green and number of cells in largest elements);
+
+Thanks
+
+
+
 # connected-cells
 A Typescript exercise in search algorithm
 
