@@ -38,19 +38,30 @@ class ConnctedCells
                 document.write("<br>&nbsp;&nbsp;&nbsp;&nbsp;");
             } 
     
-           
+            var table = document.createElement("table");
+            table.border = "1";
+            table.style.width = '100';
+    
              for(i = 0; i < this.m; i++ )
                 {
-                    document.write("<br>");
+                   var row = table.insertRow(-1);
                    
                     for(j = 0; j < this.n; j++)
                     {
-                        document.write("<b>&nbsp;&nbsp;" + this.matrix[i][j]);
+                        var cell = row.insertCell(-1);
+                        cell.style.width = '40';
+                        cell.style.height = '40';
+                        cell.innerHTML = ""+this.matrix[i][j] ;
              
+                        
                     }
               
              }       
-        
+             var dvTable = document.createElement("div");
+             dvTable.appendChild(table);
+             document.write(dvTable.innerHTML);
+             document.write("<br>");
+             document.write("<br>");
     }
     
     
